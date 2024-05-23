@@ -15,20 +15,44 @@ namespace RSCProgerss.Model
 			get { return id; }
 			set { id = value; }
 		}
-		private string title;
+		private string? title;
 
-		public string Title
+		public string? Title
 		{
 			get { return title; }
 			set { title = value; }
 		}
-		private int myVar;
+		private string? technology;
 
-		public int MyProperty
+		public string? Technology
 		{
-			get { return myVar; }
-			set { myVar = value; }
+			get { return technology; }
+			set { technology = value; }
 		}
+
+		private int price;
+
+		public int Price
+		{
+			get { return price; }
+			set { price = value; }
+		}
+		private int category;
+
+		public int Category
+		{
+			get { return category; }
+			set { category = value; }
+		}
+		private byte[]? drawing;
+
+		public byte[]? Drawing
+		{
+			get { return drawing; }
+			set { drawing = value; }
+		}
+
+
 
 
 

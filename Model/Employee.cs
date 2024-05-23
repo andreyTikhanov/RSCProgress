@@ -15,6 +15,14 @@ namespace RSCProgerss.Model
 			get { return id; }
 			set { id = value; }
 		}
+		private string password;
+
+		public string Password
+		{
+			get { return password; }
+			set { password = value; }
+		}
+
 		private string? firstName;
 
 		public string? FirstName
