@@ -12,15 +12,6 @@ namespace RSCProgerss.Model
             get { return id; }
             set { id = value; }
         }
-        private string login;
-
-        public string Login
-        {
-            get { return login; }
-            set { login = value; }
-        }
-
-
         private string role;
 
         public string Role

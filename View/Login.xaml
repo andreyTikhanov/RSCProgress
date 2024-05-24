@@ -19,8 +19,8 @@
         </StackPanel>
         <Canvas Background="#545E75" Grid.Row="1">
             <Label Foreground="#0D1321" FontSize="25" Margin="190 0 10 10" Name="lbError" Visibility="Hidden"></Label>
-            <Label Foreground="#0D1321" Margin="10 40 0 0" FontSize="25" Width="330" Height="45">Введите логин:</Label>
-            <TextBox x:Name="tbLogin" Background="#F0EBD8" Foreground="#0D1321"  Height="40" Width="380" FontSize="25" Margin="350 40  " ></TextBox>
+            <Label Foreground="#0D1321" Margin="10 40 0 0" FontSize="25" Width="330" Height="45">Введите табельный номер:</Label>
+            <TextBox x:Name="tbNumber" Background="#F0EBD8" Foreground="#0D1321"  Height="40" Width="380" FontSize="25" Margin="350 40  " ></TextBox>
             <Label Foreground="#0D1321"  FontSize="25" Height="45" Width="330" Margin="10 110">Введите пароль:</Label>
             <PasswordBox x:Name="pbPassword" Background="#F0EBD8" Foreground="#0D1321"  Margin="350 110" Height="40" Width="380" FontSize="25"></PasswordBox>
             <Button Click="btnOk_Click" Background="#F0EBD8" Foreground="#0D1321"  Margin="200 180" Width="100" Height="45" FontSize="25" IsDefault="True">Войти</Button>

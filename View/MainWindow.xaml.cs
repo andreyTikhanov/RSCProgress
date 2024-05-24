@@ -1,6 +1,7 @@
 ﻿using RSCProgerss.Model;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace RSCProgerss.View
 {
@@ -10,34 +11,62 @@ namespace RSCProgerss.View
     {
         ObservableCollection<Worker> workers;
         ObservableCollection<Master> masters;
+        ObservableCollection<Technolog> technologs;
         Worker _worker;
         Master _master;
-        public MainWindow(Worker worker)
+        Technolog _technolog;
+        public static Employee Employee;
+        public MainWindow(Employee employee)
         {
             InitializeComponent();
-            _worker = worker;
-            MainFrame.NavigationService.Navigate(new MainWorkerPage(_worker));
-        }
-        public MainWindow(Master master)
-        {
-            InitializeComponent ();
-            _master = master;
-            MainFrame.NavigationService.Navigate(new MainMasterPage(_master));
-        }
-        public MainWindow()
-        {
-            InitializeComponent();
-            using (FactoryContext db = new FactoryContext())
+
+            if(employee == null)
             {
-                db.SaveChanges();
+                MessageBox.Show("none found");
+            }
+            if (employee.Role == "Worker")
+            {
+                _worker = (Worker)employee;
+                MainWorkerWindow window = new MainWorkerWindow(_worker);
+                window.ShowDialog();
             }
 
+            /*
+            technologs = new ObservableCollection<Technolog>
+            {
+                new Technolog
+                {
+                    FirstName="john",
+                    SecondName="deer",
+                    Experiance=new DateTime(2010, 3 ,19),
+                    Password="1",
+
+
+                },
+                new Technolog
+                {
+                    FirstName="mike",
+                    SecondName="gomes",
+                    Experiance=new DateTime(2020, 11 ,4),
+                    Password="2", 
+
+                }
+            };
             using (FactoryContext db = new FactoryContext())
             {
-                db.AddRange(masters);
+                db.AddRange(technologs);
                 db.SaveChanges();
-            }
+            };
+            */
+
+
+
         }
 
+        private object MainWorkerPage(Worker worker)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+

@@ -2,7 +2,6 @@
 {
     public class Worker : Employee
     {
-
         private int category;
 
         public int Category

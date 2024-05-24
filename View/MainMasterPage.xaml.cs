@@ -1,4 +1,5 @@
 ﻿using RSCProgerss.Model;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace RSCProgerss.View
@@ -11,5 +12,6 @@ namespace RSCProgerss.View
             _master = master;
             InitializeComponent();
         }
+
     }
 }

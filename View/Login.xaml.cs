@@ -19,9 +19,9 @@ namespace RSCProgerss.View
 {
     public partial class Login : Window
     {
-
-        Master _master;
         Worker _worker;
+        Master _master;
+        Technolog _technolog;
         public Login()
         {
             InitializeComponent();
@@ -29,16 +29,30 @@ namespace RSCProgerss.View
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(tbLogin.Text)) return;
+            if (string.IsNullOrEmpty(tbNumber.Text)) return;
             if (string.IsNullOrEmpty(pbPassword.Password)) return;
             try
             {
                 using (FactoryContext db = new FactoryContext())
                 {
-                    _worker = db.Workers.FirstOrDefault(w => w.Login == tbLogin.Text && w.Password == pbPassword.Password);
+                    MainWindow.Employee = db.Employees.FirstOrDefault(e => e.Id == int.Parse(tbNumber.Text) && e.Password == pbPassword.Password);
 
-                    _master = db.Masters.FirstOrDefault(m => m.Login == tbLogin.Text && m.Password == pbPassword.Password);
+                    if (MainWindow.Employee != null)
+                    {
+                        MainWindow mainWindow = new MainWindow(MainWindow.Employee);
+                        
+                    }
+                    else 
+                    {
+                        lbError.Visibility = Visibility.Visible;
+                        lbError.Content = "Вы ввели некорректные данные";
+                        return;
+                    }
+                    this.Close();
+
+
                 }
+
             }
             catch (Exception ex)
             {
@@ -47,24 +61,7 @@ namespace RSCProgerss.View
                 return;
             }
 
-            if (_worker != null)
-            {
-                MainWindow mainWindow = new MainWindow(_worker);
-                mainWindow.Show();
-                this.Close(); // Закрываем текущее окно
-                return;
-            }
-
-            if (_master != null)
-            {
-                MainWindow mainWindow = new MainWindow(_master);
-                mainWindow.Show();
-                this.Close(); // Закрываем текущее окно
-                return;
-            }
-
-            lbError.Visibility = Visibility.Visible;
-            lbError.Content = "Вы ввели некорректные данные";
+            
         }
     
 

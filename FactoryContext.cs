@@ -5,8 +5,7 @@ namespace RSCProgerss
 {
     public class FactoryContext : DbContext
     {
-        public DbSet<Worker> Workers { get; set; }
-        public DbSet<Master> Masters { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Detail> Details { get; set; }
         public DbSet<Order> Orders { get; set; }
 
@@ -22,34 +21,45 @@ namespace RSCProgerss
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Worker>()
-                .HasIndex(w => w.Login)
-                .IsUnique();
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Master>()
-                .HasIndex(m => m.Login)
-                .IsUnique();
+            modelBuilder.Entity<Employee>()
+                .HasDiscriminator<string>("Discriminator")
+                .HasValue<Worker>("Worker")
+                .HasValue<Master>("Master")
+                .HasValue<Technolog>("Technolog");
         }
-        public override int SaveChanges()
-        {
-            var newWorkers = ChangeTracker.Entries<Worker>()
-                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
-                .Select(e => e.Entity.Login)
-                .ToList();
 
-            var newMasters = ChangeTracker.Entries<Master>()
-                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
-                .Select(e => e.Entity.Login)
-                .ToList();
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Worker>()
+        //        .HasIndex(w => w.Login)
+        //        .IsUnique();
 
-            var allLogins = Workers.Select(w => w.Login).Concat(Masters.Select(m => m.Login)).ToList();
+        //    modelBuilder.Entity<Master>()
+        //        .HasIndex(m => m.Login)
+        //        .IsUnique();
+        //}
+        //public override int SaveChanges()
+        //{
+        //    var newWorkers = ChangeTracker.Entries<Worker>()
+        //        .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
+        //        .Select(e => e.Entity.Login)
+        //        .ToList();
 
-            if (newWorkers.Intersect(allLogins).Any() || newMasters.Intersect(allLogins).Any())
-            {
-                throw new Exception("Login must be unique across both Workers and Masters.");
-            }
+        //    var newMasters = ChangeTracker.Entries<Master>()
+        //        .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
+        //        .Select(e => e.Entity.Login)
+        //        .ToList();
 
-            return base.SaveChanges();
-        }
+        //    var allLogins = Workers.Select(w => w.Login).Concat(Masters.Select(m => m.Login)).ToList();
+
+        //    if (newWorkers.Intersect(allLogins).Any() || newMasters.Intersect(allLogins).Any())
+        //    {
+        //        throw new Exception("Login must be unique across both Workers and Masters.");
+        //    }
+
+        //    return base.SaveChanges();
+        //}
     }
 }
