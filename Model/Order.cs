@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace RSCProgerss.Model
 {
     public class Order
     {
-		private int id;
+        private int id;
 
-		public int Id
-		{
-			get { return id; }
-			set { id = value; }
-		}
-		public Worker Worker { get; set; }
-		public ObservableCollection<Detail> Details { get; set; }
-		public Order() { }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        private int countDetails;
 
-	}
+        public int CountDetails
+        {
+            get { return countDetails; }
+            set { countDetails = value; }
+        }
+
+        public Worker Worker { get; set; }
+        public ObservableCollection<Detail> Details { get; set; }
+        public Order() { }
+
+    }
 }
