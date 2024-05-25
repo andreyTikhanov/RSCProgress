@@ -1,7 +1,7 @@
 ﻿using RSCProgerss.Model;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace RSCProgerss.View
 {
@@ -16,19 +16,33 @@ namespace RSCProgerss.View
         Master _master;
         Technolog _technolog;
         public static Employee Employee;
-        public MainWindow(Employee employee)
+        public MainWindow()
         {
             InitializeComponent();
-
-            if(employee == null)
+              
+            Login login = new Login();
+            login.ShowDialog();
+            if (Employee == null)
             {
-                MessageBox.Show("none found");
+                Application.Current.Shutdown();
             }
-            if (employee.Role == "Worker")
+           
+
+            
+            switch (Employee.Role)
             {
-                _worker = (Worker)employee;
-                MainWorkerWindow window = new MainWorkerWindow(_worker);
-                window.ShowDialog();
+                case "Worker":
+                    mainFrame.Navigate(new MainWorkerPage(Employee));
+                    break;
+                case "Master":
+                    mainFrame.Navigate(new MainMasterPage(Employee));
+                    break;
+                case "Technolog":
+                    mainFrame.Navigate(new Uri("View/MainTechnologPage.xaml", UriKind.Relative));
+                    break;
+                default:
+                    break;
+
             }
 
             /*
@@ -59,14 +73,8 @@ namespace RSCProgerss.View
             };
             */
 
-
-
         }
-
-        private object MainWorkerPage(Worker worker)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
 

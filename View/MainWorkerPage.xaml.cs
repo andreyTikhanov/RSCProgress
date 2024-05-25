@@ -12,19 +12,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RSCProgerss.View
 {
-    public partial class MainWorkerWindow : Window
+   
+    public partial class MainWorkerPage : Page
     {
+        
         private DispatcherTimer timer;
         Worker _worker;
-        public MainWorkerWindow(Worker worker)
+        public MainWorkerPage()
+        {
+            MessageBox.Show("Hello");
+        }
+       
+        public MainWorkerPage(Employee employee)
         {
             InitializeComponent();
-            _worker = worker;
+            using (FactoryContext db = new FactoryContext())
+            {
+                _worker =(Worker) db.Employees.FirstOrDefault(w => w.Id == employee.Id && w.Password == employee.Password);
+            }
             Show();
         }
         public void ShowPhotoWorker()

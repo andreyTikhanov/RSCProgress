@@ -15,7 +15,7 @@
 
         <StackPanel Grid.Row="0" 
  Background="#545E75" >
-            <Image  Source="C:\Users\andre\source\repos\ImATinsman\ImATinsman\Pictures\roskosmos.png" Margin="318,20,319,30" RenderTransformOrigin="0.681,0.469"/>
+            <Image  Source="C:\Users\andre\source\repos\RSCProgerss\RSCProgerss\Images\roskosmos.png" Margin="318,20,319,30" RenderTransformOrigin="0.681,0.469"/>
         </StackPanel>
         <Canvas Background="#545E75" Grid.Row="1">
             <Label Foreground="#0D1321" FontSize="25" Margin="190 0 10 10" Name="lbError" Visibility="Hidden"></Label>

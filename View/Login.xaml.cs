@@ -1,19 +1,5 @@
 ﻿using RSCProgerss.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RSCProgerss.View
 {
@@ -35,20 +21,18 @@ namespace RSCProgerss.View
             {
                 using (FactoryContext db = new FactoryContext())
                 {
-                    MainWindow.Employee = db.Employees.FirstOrDefault(e => e.Id == int.Parse(tbNumber.Text) && e.Password == pbPassword.Password);
+                    Employee employee = db.Employees.FirstOrDefault(e => e.Id == int.Parse(tbNumber.Text) && e.Password == pbPassword.Password);
 
-                    if (MainWindow.Employee != null)
+                    if (employee == null)
                     {
-                        MainWindow mainWindow = new MainWindow(MainWindow.Employee);
-                        
-                    }
-                    else 
-                    {
+                        MessageBox.Show("Что то пошло не так");
                         lbError.Visibility = Visibility.Visible;
                         lbError.Content = "Вы ввели некорректные данные";
                         return;
                     }
-                    this.Close();
+                    MainWindow.Employee = employee;
+                    Close();
+
 
 
                 }
@@ -61,16 +45,16 @@ namespace RSCProgerss.View
                 return;
             }
 
-            
+
         }
-    
 
 
 
 
-    
 
-    private void btnExit_Click(object sender, RoutedEventArgs e)
+
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
