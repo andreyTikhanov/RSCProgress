@@ -11,20 +11,30 @@
     <DockPanel Background="#748CAB">
         <DockPanel DockPanel.Dock="Top">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Name="MasterImage" Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Column="2"/>
+                <Image Name="MasterImage" Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0"  Grid.Column="2"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0">
                     <Label Foreground="#F0EBD8"  Name="lbTime" Margin="10 20 0 10"/>
                     <Label Foreground="#F0EBD8"  Name="lbNameWorker" Content="Удачной работы, " Margin="10 0 0 10"/>
                     <Label></Label>
                 </StackPanel>
-
                 <Image Width="100" Height="100" Source="C:\Users\andre\source\repos\RSCProgerss\RSCProgerss\Images\labelProgerss.png" VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Column="1" />
+                <Grid Grid.Row="1">
+                    <Label Foreground="#F0EBD8" Margin="7,0,-7,434">Выбрать рабочего: </Label>
+                    <ListBox Height="100" Foreground="#F0EBD8" FontSize="25" Background="#1D2D44" x:Name="lbWorkers" Margin="0,54,0,284"></ListBox>
+                    <Label Foreground="#F0EBD8" Margin="10,200,-10,240">Выбрать деталь: </Label>
+                    <ListBox  Foreground="#F0EBD8" FontSize="25" Background="#1D2D44" Height="100" Margin="4,258,-4,142" ></ListBox>
+                </Grid>
+            
             </Grid>
         </DockPanel>
     </DockPanel>

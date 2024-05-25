@@ -56,7 +56,10 @@ namespace RSCProgerss.Model
             get { return photo; }
             set { photo = value; }
         }
-
+        public override string ToString()
+        {
+            return $"{firstName} {secondName} {id}"; 
+        }
 
 
 

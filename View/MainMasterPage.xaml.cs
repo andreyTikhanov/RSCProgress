@@ -25,7 +25,16 @@ namespace RSCProgerss.View
             InitializeComponent();
             ShowPhotoMaster();
             Show();
+            lbWorkers.ItemsSource = GetWorkers();
         }
+        public List<Employee> GetWorkers()
+        {
+            using(FactoryContext db = new FactoryContext())
+            {
+                return db.Employees.Where( e => e.Role=="Worker").ToList();
+            }
+        }
+
         public void ShowPhotoMaster()
         {
             if (_master.Photo == null) return;

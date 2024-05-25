@@ -38,7 +38,7 @@ namespace RSCProgerss.View
                     mainFrame.Navigate(new MainMasterPage(Employee));
                     break;
                 case "Technolog":
-                    mainFrame.Navigate(new Uri("View/MainTechnologPage.xaml", UriKind.Relative));
+                    mainFrame.Navigate(new MainTechnologPage(Employee));
                     break;
                 default:
                     break;
